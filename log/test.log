@@ -1,0 +1,354 @@
+  [1m[35m (34.1ms)[0m  [1m[35mDROP DATABASE IF EXISTS "code_challenge_test"[0m
+  [1m[35m (104.9ms)[0m  [1m[35mCREATE DATABASE "code_challenge_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (7.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (0)[0m
+  [1m[35m (5.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "test"], ["created_at", "2021-09-01 01:17:31.825463"], ["updated_at", "2021-09-01 01:17:31.825463"]]
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "schema_sha1"], ["value", "c9ad1dbaa05acea2eb44861d1fdc691e622f5dd5"], ["created_at", "2021-09-01 01:17:31.830399"], ["updated_at", "2021-09-01 01:17:31.830399"]]
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (1.5ms)[0m  [1m[34m          SELECT schemaname || '.' || tablename
+          FROM pg_tables
+          WHERE
+            tablename !~ '_prt_' AND
+             tablename <> 'schema_migrations'  AND tablename <> 'ar_internal_metadata'  AND
+            schemaname = ANY (current_schemas(false))
+[0m
+  [1m[35m (1.0ms)[0m  [1m[34mselect table_name from information_schema.views where table_schema = 'code_challenge_test'[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"1.1.1.1", "hostnames_attributes"=>[{"hostname"=>"lorem.com"}, {"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"1.1.1.1", "hostnames_attributes"=>[{"hostname"=>"lorem.com"}, {"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 77)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"2.2.2.2", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"2.2.2.2", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"3.3.3.3", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"3.3.3.3", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"4.4.4.4", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}, {"hostname"=>"amet.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"4.4.4.4", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}, {"hostname"=>"amet.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"5.5.5.5", "hostnames_attributes"=>[{"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"5.5.5.5", "hostnames_attributes"=>[{"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#index as JSON
+  Parameters: {"page"=>"1", "dns_record"=>{}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"1.1.1.1", "hostnames_attributes"=>[{"hostname"=>"lorem.com"}, {"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"1.1.1.1", "hostnames_attributes"=>[{"hostname"=>"lorem.com"}, {"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 34)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"2.2.2.2", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"2.2.2.2", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"3.3.3.3", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"3.3.3.3", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"4.4.4.4", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}, {"hostname"=>"amet.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"4.4.4.4", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}, {"hostname"=>"amet.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"5.5.5.5", "hostnames_attributes"=>[{"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"5.5.5.5", "hostnames_attributes"=>[{"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#index as JSON
+  Parameters: {"page"=>"1", "dns_record"=>{}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"1.1.1.1", "hostnames_attributes"=>[{"hostname"=>"lorem.com"}, {"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"1.1.1.1", "hostnames_attributes"=>[{"hostname"=>"lorem.com"}, {"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 33)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"2.2.2.2", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"2.2.2.2", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"3.3.3.3", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"3.3.3.3", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"4.4.4.4", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}, {"hostname"=>"amet.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"4.4.4.4", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}, {"hostname"=>"amet.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"5.5.5.5", "hostnames_attributes"=>[{"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"5.5.5.5", "hostnames_attributes"=>[{"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#index as JSON
+  Parameters: {"included"=>["lorem.com"], "page"=>"1", "dns_record"=>{}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"1.1.1.1", "hostnames_attributes"=>[{"hostname"=>"lorem.com"}, {"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"1.1.1.1", "hostnames_attributes"=>[{"hostname"=>"lorem.com"}, {"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 33)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"2.2.2.2", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"2.2.2.2", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"3.3.3.3", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"3.3.3.3", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"4.4.4.4", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}, {"hostname"=>"amet.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"4.4.4.4", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}, {"hostname"=>"amet.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"5.5.5.5", "hostnames_attributes"=>[{"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"5.5.5.5", "hostnames_attributes"=>[{"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#index as JSON
+  Parameters: {"included"=>["lorem.com"], "page"=>"1", "dns_record"=>{}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"1.1.1.1", "hostnames_attributes"=>[{"hostname"=>"lorem.com"}, {"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"1.1.1.1", "hostnames_attributes"=>[{"hostname"=>"lorem.com"}, {"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 33)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"2.2.2.2", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"2.2.2.2", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"3.3.3.3", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"3.3.3.3", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"4.4.4.4", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}, {"hostname"=>"amet.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"4.4.4.4", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}, {"hostname"=>"amet.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"5.5.5.5", "hostnames_attributes"=>[{"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"5.5.5.5", "hostnames_attributes"=>[{"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#index as JSON
+  Parameters: {"excluded"=>["lorem.com"], "page"=>"1", "dns_record"=>{}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"1.1.1.1", "hostnames_attributes"=>[{"hostname"=>"lorem.com"}, {"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"1.1.1.1", "hostnames_attributes"=>[{"hostname"=>"lorem.com"}, {"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 33)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"2.2.2.2", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"2.2.2.2", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"3.3.3.3", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"3.3.3.3", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"4.4.4.4", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}, {"hostname"=>"amet.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"4.4.4.4", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}, {"hostname"=>"amet.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"5.5.5.5", "hostnames_attributes"=>[{"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"5.5.5.5", "hostnames_attributes"=>[{"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#index as JSON
+  Parameters: {"excluded"=>["lorem.com"], "page"=>"1", "dns_record"=>{}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"1.1.1.1", "hostnames_attributes"=>[{"hostname"=>"lorem.com"}, {"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"1.1.1.1", "hostnames_attributes"=>[{"hostname"=>"lorem.com"}, {"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 33)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"2.2.2.2", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"2.2.2.2", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"3.3.3.3", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"3.3.3.3", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"4.4.4.4", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}, {"hostname"=>"amet.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"4.4.4.4", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}, {"hostname"=>"amet.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"5.5.5.5", "hostnames_attributes"=>[{"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"5.5.5.5", "hostnames_attributes"=>[{"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#index as JSON
+  Parameters: {"excluded"=>["sit.com"], "included"=>["ipsum.com", "dolor.com"], "page"=>"1", "dns_record"=>{}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"1.1.1.1", "hostnames_attributes"=>[{"hostname"=>"lorem.com"}, {"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"1.1.1.1", "hostnames_attributes"=>[{"hostname"=>"lorem.com"}, {"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 33)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"2.2.2.2", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"2.2.2.2", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"3.3.3.3", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"3.3.3.3", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"4.4.4.4", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}, {"hostname"=>"amet.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"4.4.4.4", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}, {"hostname"=>"amet.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"5.5.5.5", "hostnames_attributes"=>[{"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"5.5.5.5", "hostnames_attributes"=>[{"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#index as JSON
+  Parameters: {"excluded"=>["sit.com"], "included"=>["ipsum.com", "dolor.com"], "page"=>"1", "dns_record"=>{}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#index as HTML
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 33)
+  [1m[35m (23.3ms)[0m  [1m[35mDROP DATABASE IF EXISTS "code_challenge_test"[0m
+  [1m[35m (84.2ms)[0m  [1m[35mCREATE DATABASE "code_challenge_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (10.8ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (0)[0m
+  [1m[35m (8.5ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.0ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "test"], ["created_at", "2021-09-01 01:35:47.882763"], ["updated_at", "2021-09-01 01:35:47.882763"]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.8ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "schema_sha1"], ["value", "c9ad1dbaa05acea2eb44861d1fdc691e622f5dd5"], ["created_at", "2021-09-01 01:35:47.896921"], ["updated_at", "2021-09-01 01:35:47.896921"]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (1.7ms)[0m  [1m[34m          SELECT schemaname || '.' || tablename
+          FROM pg_tables
+          WHERE
+            tablename !~ '_prt_' AND
+             tablename <> 'schema_migrations'  AND tablename <> 'ar_internal_metadata'  AND
+            schemaname = ANY (current_schemas(false))
+[0m
+  [1m[35m (1.0ms)[0m  [1m[34mselect table_name from information_schema.views where table_schema = 'code_challenge_test'[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"1.1.1.1", "hostnames_attributes"=>[{"hostname"=>"lorem.com"}, {"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"1.1.1.1", "hostnames_attributes"=>[{"hostname"=>"lorem.com"}, {"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 77)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"2.2.2.2", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"2.2.2.2", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"3.3.3.3", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"3.3.3.3", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"4.4.4.4", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}, {"hostname"=>"amet.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"4.4.4.4", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}, {"hostname"=>"amet.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"5.5.5.5", "hostnames_attributes"=>[{"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"5.5.5.5", "hostnames_attributes"=>[{"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#index as JSON
+  Parameters: {"page"=>"1", "dns_record"=>{}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"1.1.1.1", "hostnames_attributes"=>[{"hostname"=>"lorem.com"}, {"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"1.1.1.1", "hostnames_attributes"=>[{"hostname"=>"lorem.com"}, {"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 34)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"2.2.2.2", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"2.2.2.2", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"3.3.3.3", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"3.3.3.3", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"4.4.4.4", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}, {"hostname"=>"amet.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"4.4.4.4", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}, {"hostname"=>"amet.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"5.5.5.5", "hostnames_attributes"=>[{"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"5.5.5.5", "hostnames_attributes"=>[{"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#index as JSON
+  Parameters: {"page"=>"1", "dns_record"=>{}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"1.1.1.1", "hostnames_attributes"=>[{"hostname"=>"lorem.com"}, {"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"1.1.1.1", "hostnames_attributes"=>[{"hostname"=>"lorem.com"}, {"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 33)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"2.2.2.2", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"2.2.2.2", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"3.3.3.3", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"3.3.3.3", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"4.4.4.4", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}, {"hostname"=>"amet.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"4.4.4.4", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}, {"hostname"=>"amet.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"5.5.5.5", "hostnames_attributes"=>[{"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"5.5.5.5", "hostnames_attributes"=>[{"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#index as JSON
+  Parameters: {"included"=>["lorem.com"], "page"=>"1", "dns_record"=>{}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"1.1.1.1", "hostnames_attributes"=>[{"hostname"=>"lorem.com"}, {"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"1.1.1.1", "hostnames_attributes"=>[{"hostname"=>"lorem.com"}, {"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 33)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"2.2.2.2", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"2.2.2.2", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"3.3.3.3", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"3.3.3.3", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"4.4.4.4", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}, {"hostname"=>"amet.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"4.4.4.4", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}, {"hostname"=>"amet.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"5.5.5.5", "hostnames_attributes"=>[{"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"5.5.5.5", "hostnames_attributes"=>[{"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#index as JSON
+  Parameters: {"included"=>["lorem.com"], "page"=>"1", "dns_record"=>{}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"1.1.1.1", "hostnames_attributes"=>[{"hostname"=>"lorem.com"}, {"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"1.1.1.1", "hostnames_attributes"=>[{"hostname"=>"lorem.com"}, {"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 33)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"2.2.2.2", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"2.2.2.2", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"3.3.3.3", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"3.3.3.3", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"4.4.4.4", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}, {"hostname"=>"amet.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"4.4.4.4", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}, {"hostname"=>"amet.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"5.5.5.5", "hostnames_attributes"=>[{"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"5.5.5.5", "hostnames_attributes"=>[{"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#index as JSON
+  Parameters: {"excluded"=>["lorem.com"], "page"=>"1", "dns_record"=>{}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"1.1.1.1", "hostnames_attributes"=>[{"hostname"=>"lorem.com"}, {"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"1.1.1.1", "hostnames_attributes"=>[{"hostname"=>"lorem.com"}, {"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 33)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"2.2.2.2", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"2.2.2.2", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"3.3.3.3", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"3.3.3.3", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"4.4.4.4", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}, {"hostname"=>"amet.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"4.4.4.4", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}, {"hostname"=>"amet.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"5.5.5.5", "hostnames_attributes"=>[{"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"5.5.5.5", "hostnames_attributes"=>[{"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#index as JSON
+  Parameters: {"excluded"=>["lorem.com"], "page"=>"1", "dns_record"=>{}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"1.1.1.1", "hostnames_attributes"=>[{"hostname"=>"lorem.com"}, {"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"1.1.1.1", "hostnames_attributes"=>[{"hostname"=>"lorem.com"}, {"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 33)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"2.2.2.2", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"2.2.2.2", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"3.3.3.3", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"3.3.3.3", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"4.4.4.4", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}, {"hostname"=>"amet.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"4.4.4.4", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}, {"hostname"=>"amet.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"5.5.5.5", "hostnames_attributes"=>[{"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"5.5.5.5", "hostnames_attributes"=>[{"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#index as JSON
+  Parameters: {"excluded"=>["sit.com"], "included"=>["ipsum.com", "dolor.com"], "page"=>"1", "dns_record"=>{}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"1.1.1.1", "hostnames_attributes"=>[{"hostname"=>"lorem.com"}, {"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"1.1.1.1", "hostnames_attributes"=>[{"hostname"=>"lorem.com"}, {"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 33)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"2.2.2.2", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"2.2.2.2", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"3.3.3.3", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"3.3.3.3", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"amet.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"4.4.4.4", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}, {"hostname"=>"amet.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"4.4.4.4", "hostnames_attributes"=>[{"hostname"=>"ipsum.com"}, {"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}, {"hostname"=>"amet.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#create as JSON
+  Parameters: {"dns_records"=>{"ip"=>"5.5.5.5", "hostnames_attributes"=>[{"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}]}, "dns_record"=>{"dns_records"=>{"ip"=>"5.5.5.5", "hostnames_attributes"=>[{"hostname"=>"dolor.com"}, {"hostname"=>"sit.com"}]}}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#index as JSON
+  Parameters: {"excluded"=>["sit.com"], "included"=>["ipsum.com", "dolor.com"], "page"=>"1", "dns_record"=>{}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 17)
+Processing by Api::V1::DnsRecordsController#index as HTML
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 33)
